@@ -1,5 +1,7 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 
+import Header from "./components/Header";
+
 function App() {
   return (
     <Grid
@@ -9,15 +11,15 @@ function App() {
       }}
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
-      <GridItem area="header" bg="coral">
-        Header
+      <GridItem area="header" p={2}>
+        <Header />
       </GridItem>
       <Show above="lg">
-        <GridItem area="nav" bg="tomato">
+        <GridItem area="nav" bg="tomato" p={2}>
           Nav
         </GridItem>
       </Show>
-      <GridItem area="main" bg="tomato">
+      <GridItem area="main" bg="tomato" p={2}>
         Main
       </GridItem>
     </Grid>
