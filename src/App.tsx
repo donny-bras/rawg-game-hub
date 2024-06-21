@@ -20,7 +20,7 @@ function App() {
           Nav
         </GridItem>
       </Show>
-      <GridItem area="main" bg="tomato" p={2}>
+      <GridItem area="main" p={2}>
         <GamesGrid />
       </GridItem>
     </Grid>

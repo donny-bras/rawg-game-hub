@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
 
+import { CanceledError } from "axios";
 import axios from "../services/api-client";
 
-type Game = {
+export type Game = {
   id: string;
   name: string;
-  image_background: string;
+  background_image: string;
 };
 
 type FetchGamesResponse = {
@@ -18,18 +19,24 @@ const useGames = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     setIsLoading(true);
+    setError("");
 
     axios
-      .get<FetchGamesResponse>("/games")
+      .get<FetchGamesResponse>("/games", { signal: controller.signal })
       .then(({ data }) => {
         setGames(data.results);
-        setIsLoading(false);
       })
       .catch((err) => {
-        setError(err.message);
-        setIsLoading(false);
-      });
+        if (err instanceof CanceledError) return;
+
+        setError(`Error loading games: ${err.message}`);
+      })
+      .finally(() => setIsLoading(false));
+
+    return () => controller.abort();
   }, []);
 
   return { games, error, isLoading };
