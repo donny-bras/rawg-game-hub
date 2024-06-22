@@ -1,4 +1,4 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Alert, AlertIcon, SimpleGrid } from "@chakra-ui/react";
 
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
@@ -6,7 +6,7 @@ import GameCardSkeleton from "./GameCardSkeleton";
 import useGames from "../hooks/useGames";
 
 const GamesGrid = () => {
-  const { games, error, isLoading } = useGames();
+  const { data: games, error, isLoading } = useGames();
   const skeletons = Array.from({ length: 6 }).fill(0);
 
   return (
@@ -17,7 +17,12 @@ const GamesGrid = () => {
             <GameCardSkeleton />
           </GameCardContainer>
         ))}
-      {error && <Text color="red">{error}</Text>}
+      {error && (
+        <Alert status="error">
+          <AlertIcon />
+          There was an error loading games
+        </Alert>
+      )}
       {games.map((game) => (
         <GameCardContainer key={game.id}>
           <GameCard game={game} />

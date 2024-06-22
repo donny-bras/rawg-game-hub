@@ -6,3 +6,5 @@ export default axios.create({
     key: "83ab1d3b6d324e578860899367c5526d",
   },
 });
+
+export { CanceledError } from "axios";
