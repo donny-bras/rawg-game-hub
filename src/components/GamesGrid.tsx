@@ -3,10 +3,15 @@ import { Alert, AlertIcon, SimpleGrid } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
+import { Genre } from "../hooks/useGeneres";
 import useGames from "../hooks/useGames";
 
-const GamesGrid = () => {
-  const { data: games, error, isLoading } = useGames();
+type GamesGridProps = {
+  selectedGenre: Genre | null;
+};
+
+const GamesGrid = ({ selectedGenre }: GamesGridProps) => {
+  const { data: games, error, isLoading } = useGames(selectedGenre);
   const skeletons = Array.from({ length: 6 }).fill(0);
 
   return (
