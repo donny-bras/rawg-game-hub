@@ -3,10 +3,16 @@ import { useEffect, useState } from "react";
 import { CanceledError } from "axios";
 import axios from "../services/api-client";
 
+export type Platform = {
+  id: number;
+  slug: string;
+};
+
 export type Game = {
   id: string;
   name: string;
   background_image: string;
+  parent_platforms: { platform: Platform }[];
 };
 
 type FetchGamesResponse = {
