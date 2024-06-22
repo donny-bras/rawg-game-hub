@@ -3,6 +3,7 @@ import useData from "./useData";
 
 export type Platform = {
   id: number;
+  name: string;
   slug: string;
 };
 
