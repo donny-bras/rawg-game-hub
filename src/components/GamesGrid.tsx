@@ -1,21 +1,26 @@
 import { Alert, AlertIcon, SimpleGrid } from "@chakra-ui/react";
+import useGames, { Platform } from "../hooks/useGames";
 
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 import { Genre } from "../hooks/useGeneres";
-import useGames from "../hooks/useGames";
 
 type GamesGridProps = {
   selectedGenre: Genre | null;
+  selectedPlatform: Platform | null;
 };
 
-const GamesGrid = ({ selectedGenre }: GamesGridProps) => {
-  const { data: games, error, isLoading } = useGames(selectedGenre);
+const GamesGrid = ({ selectedGenre, selectedPlatform }: GamesGridProps) => {
+  const {
+    data: games,
+    error,
+    isLoading,
+  } = useGames(selectedGenre, selectedPlatform);
   const skeletons = Array.from({ length: 6 }).fill(0);
 
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={5}>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 5 }} spacing={5} mt={3}>
       {isLoading &&
         skeletons.map((_, i) => (
           <GameCardContainer key={i}>
