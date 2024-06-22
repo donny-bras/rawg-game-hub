@@ -11,7 +11,7 @@ type GameCardProps = {
 
 const GameCard = ({ game }: GameCardProps) => {
   return (
-    <Card w="100%" borderRadius={10} overflow="hidden">
+    <Card>
       <Image src={getCroppedImageUrl(game.background_image)} alt="game cover" />
       <CardBody>
         <Heading fontSize="2xl">{game.name}</Heading>
