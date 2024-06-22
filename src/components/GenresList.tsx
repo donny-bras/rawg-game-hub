@@ -8,17 +8,17 @@ import {
   List,
   ListItem,
   Spinner,
-  Text,
 } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGeneres";
 
 import getCroppedImageUrl from "../services/image-url";
 
 type GenresListProps = {
+  selectedGenre: Genre | null;
   onSelectGenre: (genre: Genre) => void;
 };
 
-const GenresList = ({ onSelectGenre }: GenresListProps) => {
+const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
   const { data: genres, error, isLoading } = useGenres();
 
   if (isLoading) {
@@ -51,7 +51,7 @@ const GenresList = ({ onSelectGenre }: GenresListProps) => {
             <Button
               variant="link"
               fontSize="lg"
-              fontWeight={600}
+              fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
               onClick={() => onSelectGenre(genre)}
             >
               {genre.name}
