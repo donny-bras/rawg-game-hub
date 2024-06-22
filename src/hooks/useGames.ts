@@ -1,4 +1,4 @@
-import { Genre } from "./useGeneres";
+import { Genre } from "./useGenres";
 import useData from "./useData";
 
 export type Platform = {
@@ -15,14 +15,23 @@ export type Game = {
   parent_platforms: { platform: Platform }[];
 };
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) =>
+export type GamesQuery = {
+  genre: Genre | null;
+  platform: Platform | null;
+  sortOrder: string;
+};
+
+const useGames = (gamesQuery: GamesQuery) =>
   useData<Game>(
     "/games",
-    { params: { genres: selectedGenre?.id, platforms: selectedPlatform?.id } },
-    [selectedGenre?.id, selectedPlatform?.id]
+    {
+      params: {
+        genres: gamesQuery.genre?.id,
+        platforms: gamesQuery.platform?.id,
+        ordering: gamesQuery.sortOrder,
+      },
+    },
+    [gamesQuery]
   );
 
 export default useGames;
