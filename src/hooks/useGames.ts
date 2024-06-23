@@ -15,14 +15,14 @@ export type Game = {
   parent_platforms: { platform: Platform }[];
 };
 
-export type GamesQuery = {
+export type GameQuery = {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
   searchText: string;
 };
 
-const useGames = (gamesQuery: GamesQuery) =>
+const useGames = (gamesQuery: GameQuery) =>
   useData<Game>(
     "/games",
     {

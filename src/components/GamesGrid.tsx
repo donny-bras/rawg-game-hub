@@ -1,12 +1,12 @@
 import { Alert, AlertIcon, SimpleGrid } from "@chakra-ui/react";
-import useGames, { GamesQuery } from "../hooks/useGames";
+import useGames, { GameQuery } from "../hooks/useGames";
 
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
 
 type GamesGridProps = {
-  gamesQuery: GamesQuery;
+  gamesQuery: GameQuery;
 };
 
 const GamesGrid = ({ gamesQuery }: GamesGridProps) => {
