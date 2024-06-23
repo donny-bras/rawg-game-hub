@@ -7,16 +7,18 @@ type FetchResponse<T> = {
   results: T[];
 };
 
+export type State<T> = {
+  data: T[];
+  error: string;
+  status: "idle" | "loading" | "success" | "fail";
+};
+
 const useData = <T>(
   url: string,
   requestConfig?: AxiosRequestConfig,
   deps: any[] = []
 ) => {
-  const [state, setState] = useState<{
-    data: T[];
-    error: string;
-    status: "idle" | "loading" | "success" | "fail";
-  }>({
+  const [state, setState] = useState<State<T>>({
     data: [],
     error: "",
     status: "idle",

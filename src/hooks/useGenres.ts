@@ -1,11 +1,15 @@
-import useData from "./useData";
+import { State } from "./useData";
+import genres from "../data/genres";
 
 export type Genre = {
-  id: string;
+  id: number;
   name: string;
   image_background: string;
 };
 
-const useGenres = () => useData<Genre>("/genres");
+const useGenres = () =>
+  ({ data: genres, status: "success", error: "" } as State<Genre>);
+
+// const useGenres = () => useData<Genre>("/genres");
 
 export default useGenres;

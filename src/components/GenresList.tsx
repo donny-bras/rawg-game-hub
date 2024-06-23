@@ -20,9 +20,9 @@ type GenresListProps = {
 };
 
 const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
-  const { data: genres, error, isLoading } = useGenres();
+  const { data: genres, error, status } = useGenres();
 
-  if (isLoading) {
+  if (status === "loading") {
     return (
       <Center alignItems={"center"} justifyContent={"center"}>
         <Spinner speed="0.65s" textAlign="center" />
@@ -30,11 +30,11 @@ const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
     );
   }
 
-  if (error) {
+  if (status === "fail") {
     return (
       <Alert status="error">
         <AlertIcon />
-        There was an error loading genres
+        There was an error loading genres: {error}
       </Alert>
     );
   }
