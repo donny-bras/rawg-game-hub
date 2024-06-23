@@ -12,15 +12,20 @@ const useData = <T>(
   requestConfig?: AxiosRequestConfig,
   deps: any[] = []
 ) => {
-  const [data, setData] = useState<T[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [state, setState] = useState<{
+    data: T[];
+    error: string;
+    status: "idle" | "loading" | "success" | "fail";
+  }>({
+    data: [],
+    error: "",
+    status: "idle",
+  });
 
   useEffect(() => {
     const controller = new AbortController();
 
-    setIsLoading(true);
-    setError("");
+    setState({ ...state, status: "loading", error: "" });
 
     axios
       .get<FetchResponse<T>>(url, {
@@ -28,20 +33,18 @@ const useData = <T>(
         ...requestConfig,
       })
       .then(({ data }) => {
-        setData(data.results);
-        setIsLoading(false);
+        setState({ ...state, status: "success", data: data.results });
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
 
-        setError(err.message);
-        setIsLoading(false);
+        setState({ ...state, status: "fail", error: err.message });
       });
 
     return () => controller.abort();
   }, deps);
 
-  return { data, error, isLoading };
+  return state;
 };
 
 export default useData;
