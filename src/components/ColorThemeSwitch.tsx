@@ -11,7 +11,7 @@ const ColorThemeSwitch = () => {
         id="color-mode"
         colorScheme="green"
       />
-      <FormLabel htmlFor="color-mode" mb="0" mr="0">
+      <FormLabel htmlFor="color-mode" whiteSpace="nowrap" mb="0" mr="0">
         Dark Mode
       </FormLabel>
     </FormControl>

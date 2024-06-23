@@ -13,6 +13,7 @@ function App() {
     genre: null,
     platform: null,
     sortOrder: "",
+    searchText: "",
   });
 
   return (
@@ -24,8 +25,13 @@ function App() {
       templateColumns={{ base: "1fr", lg: "250px 1fr" }}
     >
       <GridItem area="header" p={3}>
-        <Header />
+        <Header
+          onSearch={(searchText) =>
+            setGamesQuery({ ...gamesQuery, searchText })
+          }
+        />
       </GridItem>
+
       <Show above="lg">
         <GridItem area="nav" p={3}>
           <GenresList
@@ -34,6 +40,7 @@ function App() {
           />
         </GridItem>
       </Show>
+
       <GridItem area="main" p={3}>
         <HStack mb={3}>
           <PlatformSelector
