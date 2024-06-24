@@ -2,12 +2,7 @@ import { UseQueryResult, useQuery } from "@tanstack/react-query";
 import apiClient, { FetchResponse } from "../services/api-client";
 
 import { Genre } from "./useGenres";
-
-export type Platform = {
-  id: number;
-  name: string;
-  slug: string;
-};
+import { Platform } from "./usePlatforms";
 
 export type Game = {
   id: string;

@@ -9,7 +9,7 @@ import { FaPlaystation } from "react-icons/fa";
 import { FaXbox } from "react-icons/fa";
 import { IconType } from "react-icons";
 import { IoIosAppstore } from "react-icons/io";
-import { Platform } from "../hooks/useGames";
+import { Platform } from "../hooks/usePlatforms";
 import { SiNintendo } from "react-icons/si";
 
 const iconByPlatformMap: Record<string, IconType> = {
