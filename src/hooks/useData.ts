@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 
 import { AxiosRequestConfig } from "axios";
 
-type FetchResponse<T> = {
+export type FetchResponse<T> = {
   results: T[];
 };
 

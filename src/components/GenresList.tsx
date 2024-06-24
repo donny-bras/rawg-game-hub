@@ -20,9 +20,9 @@ type GenresListProps = {
 };
 
 const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
-  const { data: genres, error, status } = useGenres();
+  const { data: genres, isLoading, error } = useGenres();
 
-  if (status === "loading") {
+  if (isLoading) {
     return (
       <Center alignItems={"center"} justifyContent={"center"}>
         <Spinner speed="0.65s" textAlign="center" />
@@ -30,11 +30,11 @@ const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
     );
   }
 
-  if (status === "fail") {
+  if (error) {
     return (
       <Alert status="error">
         <AlertIcon />
-        There was an error loading genres: {error}
+        There was an error loading genres: {error.message}
       </Alert>
     );
   }
@@ -45,7 +45,7 @@ const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
         Genres
       </Heading>
       <List spacing={3}>
-        {genres.map((genre) => (
+        {genres?.map((genre) => (
           <ListItem key={genre.id}>
             <HStack>
               <Image
