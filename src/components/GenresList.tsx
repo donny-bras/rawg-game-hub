@@ -15,11 +15,11 @@ import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
 
 type GenresListProps = {
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
   onSelectGenre: (genre: Genre) => void;
 };
 
-const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
+const GenresList = ({ selectedGenreId, onSelectGenre }: GenresListProps) => {
   const { data, isLoading, error } = useGenres();
 
   if (isLoading) {
@@ -59,7 +59,7 @@ const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
                 whiteSpace="normal"
                 variant="link"
                 fontSize="lg"
-                fontWeight={genre.id === selectedGenre?.id ? "bold" : "normal"}
+                fontWeight={genre.id === selectedGenreId ? "bold" : "normal"}
                 onClick={() => onSelectGenre(genre)}
               >
                 {genre.name}

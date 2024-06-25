@@ -11,8 +11,6 @@ import { useState } from "react";
 
 function App() {
   const [gamesQuery, setGamesQuery] = useState<GameQuery>({
-    genre: null,
-    platform: null,
     sortOrder: "",
     searchText: "",
   });
@@ -36,8 +34,10 @@ function App() {
       <Show above="lg">
         <GridItem area="nav" p={3}>
           <GenresList
-            selectedGenre={gamesQuery.genre}
-            onSelectGenre={(genre) => setGamesQuery({ ...gamesQuery, genre })}
+            selectedGenreId={gamesQuery.genreId}
+            onSelectGenre={(genre) =>
+              setGamesQuery({ ...gamesQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
@@ -46,9 +46,9 @@ function App() {
         <GameHeading gameQuery={gamesQuery} />
         <HStack mb={3} mt={3}>
           <PlatformSelector
-            selectedPlatform={gamesQuery.platform}
+            selectedPlatformId={gamesQuery.platformId}
             onSelectPlatform={(platform) =>
-              setGamesQuery({ ...gamesQuery, platform })
+              setGamesQuery({ ...gamesQuery, platformId: platform.id })
             }
           />
           <SortSelector
