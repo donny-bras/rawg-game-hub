@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig } from "axios";
 
-type FetchResponse<T> = {
+export type FetchResponse<T> = {
+  next: string | null;
   results: T[];
 };
 
@@ -17,5 +18,5 @@ export default class APIClient<T> {
   getAll = (requestConfig?: AxiosRequestConfig) =>
     axiosClient
       .get<FetchResponse<T>>(this.endpoint, requestConfig)
-      .then((res) => res.data.results);
+      .then((res) => res.data);
 }

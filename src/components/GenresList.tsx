@@ -20,7 +20,7 @@ type GenresListProps = {
 };
 
 const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
-  const { data: genres, isLoading, error } = useGenres();
+  const { data, isLoading, error } = useGenres();
 
   if (isLoading) {
     return (
@@ -45,7 +45,7 @@ const GenresList = ({ selectedGenre, onSelectGenre }: GenresListProps) => {
         Genres
       </Heading>
       <List spacing={3}>
-        {genres?.map((genre) => (
+        {data?.results.map((genre) => (
           <ListItem key={genre.id}>
             <HStack>
               <Image
