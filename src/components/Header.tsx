@@ -1,18 +1,14 @@
 import { HStack, Image, Spacer } from "@chakra-ui/react";
 
 import ColorThemeSwitch from "./ColorThemeSwitch";
-import SearchInput from "./SerachInput";
+import SearchInput from "./SearchInput";
 import logo from "../assets/logo.webp";
 
-type HeaderProps = {
-  onSearch: (searchText: string) => void;
-};
-
-const Header = ({ onSearch }: HeaderProps) => {
+const Header = () => {
   return (
     <HStack>
       <Image src={logo} boxSize="60px" alt="logo" />
-      <SearchInput onSearch={onSearch} />
+      <SearchInput />
       <Spacer />
       <ColorThemeSwitch />
     </HStack>

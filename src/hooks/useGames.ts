@@ -7,6 +7,7 @@ import {
 
 import { Platform } from "./usePlatforms";
 import ms from "ms";
+import useGameQueryStore from "../store";
 
 const apiClient = new APIClient<Game>("/games");
 
@@ -18,17 +19,12 @@ export type Game = {
   parent_platforms: { platform: Platform }[];
 };
 
-export type GameQuery = {
-  genreId?: number;
-  platformId?: number;
-  sortOrder: string;
-  searchText: string;
-};
+const useGames = (): UseInfiniteQueryResult<
+  InfiniteData<FetchResponse<Game>>
+> => {
+  const gameQuery = useGameQueryStore((s) => s.gameQuery);
 
-const useGames = (
-  gameQuery: GameQuery
-): UseInfiniteQueryResult<InfiniteData<FetchResponse<Game>>> =>
-  useInfiniteQuery({
+  return useInfiniteQuery({
     queryKey: ["games", gameQuery],
     queryFn: ({ pageParam }) =>
       apiClient.getAll({
@@ -46,5 +42,6 @@ const useGames = (
     },
     staleTime: ms("24h"),
   });
+};
 
 export default useGames;
