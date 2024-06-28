@@ -1,5 +1,8 @@
-import { Center, Heading, Spinner, Text } from "@chakra-ui/react";
+import { Center, Heading, SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 
+import CriticScore from "../components/CriticScore";
+import GameAttribute from "../components/GameAttribute";
+import GameAttributes from "../components/GameAttributes";
 import useGame from "../hooks/useGame";
 import { useParams } from "react-router-dom";
 
@@ -21,6 +24,7 @@ const GameDetailsPage = () => {
     <>
       <Heading>{game.name}</Heading>
       <Text>{game.description_raw}</Text>
+      <GameAttributes game={game} />
     </>
   );
 };
