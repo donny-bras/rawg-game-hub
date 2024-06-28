@@ -15,10 +15,6 @@ const HomePage = () => {
       }}
       templateColumns={{ base: "1fr", lg: "200px 1fr" }}
     >
-      {/* <GridItem area="header" p={3}>
-      <Header />
-    </GridItem> */}
-
       <Show above="lg">
         <GridItem area="nav" p={3}>
           <GenresList />

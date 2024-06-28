@@ -1,4 +1,3 @@
-import { GameQuery } from "./hooks/useGames";
 import { create } from "zustand";
 
 export type GameQuery = {

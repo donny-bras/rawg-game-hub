@@ -1,4 +1,4 @@
-import { Box, Heading, Text } from "@chakra-ui/react";
+import { Alert, AlertIcon, Box, Heading } from "@chakra-ui/react";
 import { isRouteErrorResponse, useRouteError } from "react-router-dom";
 
 import Header from "../components/Header";
@@ -11,11 +11,12 @@ const ErrorPage = () => {
       <Header />
       <Box p={5}>
         <Heading>Oops...</Heading>
-        <Text>
+        <Alert status="error">
+          <AlertIcon />
           {isRouteErrorResponse(error)
             ? "Page not found"
             : `An unexpected error has occurred: ${(error as any)?.message}`}
-        </Text>
+        </Alert>
       </Box>
     </>
   );
