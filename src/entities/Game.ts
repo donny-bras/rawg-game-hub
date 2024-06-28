@@ -3,7 +3,7 @@ import { Platform } from "./Platform";
 import { Publisher } from "./Publisher";
 
 export type Game = {
-  id: string;
+  id: number;
   name: string;
   slug: string;
   description_raw: string;
