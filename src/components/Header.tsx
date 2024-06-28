@@ -6,7 +6,7 @@ import logo from "../assets/logo.webp";
 
 const Header = () => {
   return (
-    <HStack>
+    <HStack p={3}>
       <Image src={logo} boxSize="60px" alt="logo" />
       <SearchInput />
       <Spacer />
