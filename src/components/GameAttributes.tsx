@@ -10,7 +10,7 @@ type GameAttributesProps = {
 
 const GameAttributes = ({ game }: GameAttributesProps) => {
   return (
-    <SimpleGrid columns={{ base: 1, md: 2 }} my={5} spacing={4}>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4}>
       <GameAttribute title="Platforms">
         {game.parent_platforms.map(({ platform }) => (
           <Text key={platform.id}>{platform.name}</Text>
